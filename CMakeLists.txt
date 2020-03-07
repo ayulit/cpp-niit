@@ -4,6 +4,7 @@ project(cpp-niit)
 set(CMAKE_CXX_STANDARD 14)
 
 add_executable(t01-00-hello tasks/01/00-hello/main.cpp)
+add_executable(t01-00_vector tasks/01/00_vector/main.cpp tasks/01/00_vector/vector.cpp)
 
 add_executable(s01-io slides/01/io/main.cpp)
 add_executable(s01-string slides/01/string/main.cpp)
