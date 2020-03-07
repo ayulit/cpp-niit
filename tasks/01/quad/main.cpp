@@ -28,20 +28,18 @@ int* primes(int n, int& len)
 	int* data = new int[n];
 	data[len++] = 2;
 
-	for (int i = 3; i <= n; i++)
-	{
+	for (int candidate = 3; candidate <= n; candidate++) {
 		bool isPrime = true;
-		for (int j = 2; j < i; j++)
-		{
-			if (i%j == 0) {
+		for (int divisor = 2; divisor <= candidate / 2; divisor++) {
+			if (candidate % divisor == 0) {
 				isPrime = false;
+                break;
 			}
 		}
-		if (isPrime) {			
-			data[len++] = i;
+		if (isPrime) {
+			data[len++] = candidate;
 		}
 	}
-
 	return data;
 }
 
@@ -54,7 +52,7 @@ int main()
 
 	// task 02
 	int len = 0;
-	int* data = primes(10, len);
+	int* data = primes(100, len);
 	printArray(data, len);
 
 	return 0;
