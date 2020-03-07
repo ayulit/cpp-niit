@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <ctime>
+#include <cmath>
 
 void now(int &day, int &mon, int &year)
 {
@@ -30,7 +31,7 @@ int* primes(int n, int& len)
 
 	for (int candidate = 3; candidate <= n; candidate++) {
 		bool isPrime = true;
-		for (int divisor = 2; divisor <= candidate / 2; divisor++) {
+		for (int divisor = 2; divisor <= std::sqrt(candidate); divisor++) {
 			if (candidate % divisor == 0) {
 				isPrime = false;
                 break;
