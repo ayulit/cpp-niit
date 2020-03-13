@@ -13,6 +13,14 @@ MyString::MyString(const char* cstr) {
     strcpy(str, cstr);
 }
 
+MyString::MyString(const MyString &ref) {
+    const size_t SIZE = ref.Size();
+
+    str = new char[SIZE + 1];
+    // FIXME: WTF?! str is private?! How is it possible to call ref.str?
+    strcpy(str, ref.str);
+}
+
 MyString::~MyString() {
     delete [] str;
 }
@@ -44,6 +52,8 @@ void MyString::Insert(const MyString& ref, size_t pos) {
     str = new char[SIZE + 1];
     strcpy(str, tmpStr);
 }
+
+
 
 
 

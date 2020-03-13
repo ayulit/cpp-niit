@@ -20,5 +20,9 @@ int main()
     str1.Insert(str2, 2);
     str1.Print();
 
+    // Copy constructor
+    MyString str3(str1);
+    str3.Print();
+
     return 0;
 }
