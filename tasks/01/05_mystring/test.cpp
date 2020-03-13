@@ -45,5 +45,12 @@ int main()
     MyString str5("Hello, world!");
     cout << "Substring: " << str5.Substr(7, 5).ToString() << endl; // world
 
+    // Default constructor & Copy constructor in action
+    MyString str6; // default constructor in action!
+    MyString str7("str7");
+    str6 = str7; // copy constructor in action!
+    str6.Insert("str6=", 0);
+    cout << "str6 ->  " << str6.ToString() << endl;
+
     return 0;
 }
