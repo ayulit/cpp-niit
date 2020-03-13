@@ -6,14 +6,14 @@
 class MyString {
 public:
     MyString() : str(nullptr) {}
-    explicit MyString(const char* cstr); // clion wants explicit
+    explicit MyString(const char* s); // clion wants explicit
     MyString(const MyString& ref);       // copy constructor
     ~MyString();
 
     char *const ToString() const;
     size_t Size() const;
-    void Insert(const MyString& ref, size_t pos);
-    void Insert(const char* cstr, size_t pos);
+    MyString& Insert(size_t pos, const MyString& ref);
+    MyString& Insert(size_t pos, const char* s);
     long Find(const MyString& ref) const;
     long Find(const char* cstr) const;
     MyString Substr(size_t pos, size_t len) const;

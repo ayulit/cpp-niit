@@ -17,12 +17,10 @@ int main()
 
     // TODO: check bounds
     // Insert srt2 at pos #2
-    str1.Insert(str2, 2);
-    cout << "str1 = " << str1.ToString() << endl;
+    cout << "str1 = " << str1.Insert(2, str2).ToString() << endl;
 
     MyString logic("logic");
-    logic.Insert("sti", 4);
-    cout << "logic -> " << logic.ToString() << endl;
+    cout << "logic -> " << logic.Insert(4, "sti").ToString() << endl;
 
     // Copy constructor
     MyString str3(str1);
@@ -45,12 +43,11 @@ int main()
     MyString str5("Hello, world!");
     cout << "Substring: " << str5.Substr(7, 5).ToString() << endl; // world
 
-    // Default constructor & Copy constructor in action
+    // Default constructor & Copy constructor in action // FIXME: here is 'malloc: *** error'
     MyString str6; // default constructor in action!
     MyString str7("str7");
     str6 = str7; // copy constructor in action!
-    str6.Insert("str6=", 0);
-    cout << "str6 ->  " << str6.ToString() << endl;
+    cout << "str6 ->  " << str6.Insert(0, "str6=").ToString() << endl;
 
     return 0;
 }

@@ -1,12 +1,12 @@
 #include "mystring.h"
 #include <cstring>
 
-MyString::MyString(const char* cstr) {
-    size_t len = strlen(cstr);
+MyString::MyString(const char* s) {
+    size_t len = strlen(s);
 
     // FIXME: '1' for null-termination?!
     str = new char[len + 1];
-    strcpy(str, cstr);
+    strcpy(str, s);
 }
 
 MyString::MyString(const MyString &ref) {
@@ -29,12 +29,12 @@ size_t MyString::Size() const {
     return strlen(str);
 }
 
-void MyString::Insert(const MyString& ref, size_t pos) {
-    Insert(ref.str, pos);
+MyString& MyString::Insert(size_t pos, const MyString& ref) {
+    return Insert(pos, ref.str);
 }
 
-void MyString::Insert(const char *cstr, size_t pos) {
-    const size_t SIZE = this->Size() + strlen(cstr);
+MyString& MyString::Insert(size_t pos, const char *s) {
+    const size_t SIZE = this->Size() + strlen(s);
     char tmpStr[SIZE + 1]; // 1 for null-character
 
     // first part from this
@@ -42,7 +42,7 @@ void MyString::Insert(const char *cstr, size_t pos) {
     tmpStr[pos] = '\0';
 
     // concat with inserted
-    strcat(tmpStr, cstr);
+    strcat(tmpStr, s);
 
     // concat with last part from this
     strcat(tmpStr, str + pos);
@@ -51,6 +51,8 @@ void MyString::Insert(const char *cstr, size_t pos) {
     delete [] str; // free memory from str
     str = new char[SIZE + 1];
     strcpy(str, tmpStr);
+
+    return *this;
 }
 
 long MyString::Find(const MyString &ref) const {
