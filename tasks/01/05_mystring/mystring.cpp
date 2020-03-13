@@ -1,10 +1,6 @@
 #include "mystring.h"
 #include <cstring>
 
-#include <iostream>
-using std::cout;
-using std::endl;
-
 MyString::MyString(const char* cstr) {
     size_t len = strlen(cstr);
 
@@ -34,7 +30,11 @@ size_t MyString::Size() const {
 }
 
 void MyString::Insert(const MyString& ref, size_t pos) {
-    const size_t SIZE = this->Size() + ref.Size();
+    Insert(ref.str, pos);
+}
+
+void MyString::Insert(const char *cstr, size_t pos) {
+    const size_t SIZE = this->Size() + strlen(cstr);
     char tmpStr[SIZE + 1]; // 1 for null-character
 
     // first part from this
@@ -42,7 +42,7 @@ void MyString::Insert(const MyString& ref, size_t pos) {
     tmpStr[pos] = '\0';
 
     // concat with inserted
-    strcat(tmpStr, ref.str);
+    strcat(tmpStr, cstr);
 
     // concat with last part from this
     strcat(tmpStr, str + pos);

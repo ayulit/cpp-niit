@@ -1,6 +1,6 @@
-#include <iostream>
 #include "mystring.h"
 
+#include <iostream>
 using std::cout;
 using std::endl;
 
@@ -19,6 +19,10 @@ int main()
     // Insert srt2 at pos #2
     str1.Insert(str2, 2);
     cout << "str1 = " << str1.ToString() << endl;
+
+    MyString logic("logic");
+    logic.Insert("sti", 4);
+    cout << "logic -> " << logic.ToString() << endl;
 
     // Copy constructor
     MyString str3(str1);
