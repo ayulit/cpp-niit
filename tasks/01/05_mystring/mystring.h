@@ -13,6 +13,8 @@ public:
     char *const ToString() const;
     size_t Size() const;
     void Insert(const MyString& ref, size_t pos);
+    long Find(const MyString& ref) const;
+    long Find(const char* cstr) const;
 private:
     char* str;
 };

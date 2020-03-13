@@ -24,5 +24,18 @@ int main()
     MyString str3(str1);
     cout << "str3 = " << str3.ToString() << endl;
 
+    // Find SUCCESS
+    cout << "Find str2 in str3: " << str3.Find(str2) << endl;
+
+    // Find FAILED
+    MyString str4("blah");
+    cout << "Find str4 in str3: " << str3.Find(str4) << endl;
+
+    // Find literal SUCCESS
+    cout << "Find 'cde' in str3: " << str3.Find("cde") << endl;
+
+    // Find literal FAILED
+    cout << "Find 'blah' in str3: " << str3.Find("blah") << endl;
+
     return 0;
 }

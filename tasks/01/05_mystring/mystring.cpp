@@ -1,6 +1,10 @@
 #include "mystring.h"
 #include <cstring>
 
+#include <iostream>
+using std::cout;
+using std::endl;
+
 MyString::MyString(const char* cstr) {
     size_t len = strlen(cstr);
 
@@ -47,6 +51,18 @@ void MyString::Insert(const MyString& ref, size_t pos) {
     delete [] str; // free memory from str
     str = new char[SIZE + 1];
     strcpy(str, tmpStr);
+}
+
+long MyString::Find(const MyString &ref) const {
+    return Find(ref.str);
+}
+
+long MyString::Find(const char *cstr) const {
+    char* pch = strstr(str, cstr);
+    if (pch == nullptr) {
+        return -1;
+    }
+    return pch - str;
 }
 
 
