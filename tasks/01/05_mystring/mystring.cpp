@@ -1,9 +1,5 @@
 #include "mystring.h"
-#include <iostream>
 #include <cstring>
-
-using std::cout;
-using std::endl;
 
 MyString::MyString(const char* cstr) {
     size_t len = strlen(cstr);
@@ -25,8 +21,8 @@ MyString::~MyString() {
     delete [] str;
 }
 
-void MyString::Print() const {
-    cout << str << endl;
+char *const MyString::ToString() const {
+    return str;
 }
 
 size_t MyString::Size() const {

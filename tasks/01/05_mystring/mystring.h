@@ -10,7 +10,7 @@ public:
     MyString(const MyString& ref);       // copy constructor
     ~MyString();
 
-    void Print() const;
+    char *const ToString() const;
     size_t Size() const;
     void Insert(const MyString& ref, size_t pos);
 private:

@@ -9,20 +9,20 @@ int main()
     // Constructor from another c-string
     char* cstr = "abcdef";
     MyString str1(cstr);
-    str1.Print();
+    cout << "str1 = " << str1.ToString() << endl;
 
     // Constructor from string literal
     MyString str2("123");
-    str2.Print();
+    cout << "str2 = " << str2.ToString() << endl;
 
     // TODO: check bounds
     // Insert srt2 at pos #2
     str1.Insert(str2, 2);
-    str1.Print();
+    cout << "str1 = " << str1.ToString() << endl;
 
     // Copy constructor
     MyString str3(str1);
-    str3.Print();
+    cout << "str3 = " << str3.ToString() << endl;
 
     return 0;
 }
