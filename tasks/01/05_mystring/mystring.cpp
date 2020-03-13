@@ -65,6 +65,14 @@ long MyString::Find(const char *cstr) const {
     return pch - str;
 }
 
+MyString MyString::Substr(size_t pos, size_t len) const {
+    char substring[len + 1];
+    memcpy(substring, &str[pos], len);
+    substring[len] = '\0';
+
+    return MyString(substring);
+}
+
 
 
 

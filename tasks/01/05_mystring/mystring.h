@@ -16,6 +16,7 @@ public:
     void Insert(const char* cstr, size_t pos);
     long Find(const MyString& ref) const;
     long Find(const char* cstr) const;
+    MyString Substr(size_t pos, size_t len) const;
 private:
     char* str;
 };

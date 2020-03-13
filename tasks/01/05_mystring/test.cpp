@@ -41,5 +41,9 @@ int main()
     // Find literal FAILED
     cout << "Find 'blah' in str3: " << str3.Find("blah") << endl;
 
+    // Substring
+    MyString str5("Hello, world!");
+    cout << "Substring: " << str5.Substr(7, 5).ToString() << endl; // world
+
     return 0;
 }
