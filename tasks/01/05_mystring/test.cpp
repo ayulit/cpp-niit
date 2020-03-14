@@ -4,6 +4,8 @@
 using std::cout;
 using std::endl;
 
+#include <string>
+
 int main()
 {
     // Constructor from another c-string
@@ -43,8 +45,12 @@ int main()
     cout << "Substring: " << str5.Substr(7, 5).ToString() << endl; // world
 	    
     MyString str6;
-	MyString str7("str7");
-    //str6 = str7; // crash
+	MyString str7("str7"); // copy constructor in action.
+    //str6 = str7; // crash, because of assignment operator must be overloaded!
+	
+	MyString str8 = str7; // this is ok! Copy constructor in action.
+	cout << "str8 ->  " << str8.Insert(0, "str8=").ToString() << endl;
+	
 	try {
 		cout << "str6 ->  " << str6.Insert(0, "str6=").ToString() << endl;
 	}
@@ -52,8 +58,14 @@ int main()
 		cout << e.what() << endl;
 	}
 	
-	MyString str8 = "str";
-	cout << "str8 ->  " << str8.Insert(3, "8").ToString() << endl;
+	MyString str9 = "str";
+	cout << "str9 ->  " << str9.Insert(3, "9").ToString() << endl;
+
+
+	std::string sss;
+	cout << "sss ->  " << sss << endl;
+
+
 
     return 0;
 }
