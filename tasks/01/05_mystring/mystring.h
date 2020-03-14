@@ -1,12 +1,14 @@
 #ifndef CPP_NIIT_MYSTRING_H
 #define CPP_NIIT_MYSTRING_H
 
+#define _CRT_SECURE_NO_WARNINGS
+
 #include <cstddef> // needed on Mac
 
 class MyString {
 public:
     MyString() : str(nullptr) {}
-    explicit MyString(const char* s); // clion wants explicit
+    MyString(const char* s);             // clion wants explicit
     MyString(const MyString& ref);       // copy constructor
     ~MyString();
 

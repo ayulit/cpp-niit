@@ -14,8 +14,7 @@ int main()
     // Constructor from string literal
     MyString str2("123");
     cout << "str2 = " << str2.ToString() << endl;
-
-    // TODO: check bounds
+	    
     // Insert srt2 at pos #2
     cout << "str1 = " << str1.Insert(2, str2).ToString() << endl;
 
@@ -42,12 +41,19 @@ int main()
     // Substring
     MyString str5("Hello, world!");
     cout << "Substring: " << str5.Substr(7, 5).ToString() << endl; // world
-
-    // Default constructor & Copy constructor in action // FIXME: here is 'malloc: *** error'
-    MyString str6; // default constructor in action!
-    MyString str7("str7");
-    str6 = str7; // copy constructor in action!
-    cout << "str6 ->  " << str6.Insert(0, "str6=").ToString() << endl;
+	    
+    MyString str6;
+	MyString str7("str7");
+    //str6 = str7; // crash
+	try {
+		cout << "str6 ->  " << str6.Insert(0, "str6=").ToString() << endl;
+	}
+	catch (const std::exception& e)  {
+		cout << e.what() << endl;
+	}
+	
+	MyString str8 = "str";
+	cout << "str8 ->  " << str8.Insert(3, "8").ToString() << endl;
 
     return 0;
 }
