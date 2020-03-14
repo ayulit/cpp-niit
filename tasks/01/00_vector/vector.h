@@ -27,10 +27,13 @@ public:
 	int operator[] (size_t index) const;
 	Vector& operator++();
 	Vector operator++(int);
+
+	bool operator== (const Vector& right) const;
+	bool operator!= (const Vector& right) const;
 private:
 	int *data;
-	size_t size;
-	size_t capacity;
+	size_t size;     // content
+	size_t capacity; // possibilities
 
 	// helper
 	void AddTail(Vector& to, const Vector& from, int min, int max) const;

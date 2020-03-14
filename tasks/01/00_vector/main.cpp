@@ -20,12 +20,13 @@ int main()
 	v3 = v2 + 5;
 	std::cout << v3 << std::endl;
 
+	std::cout << (v3 == v2) << std::endl;
+
 	/*
 	std::cout << ++v1 << std::endl << v2++ << std::endl << ++v3 << std::endl;
 	std::cout << v1 << std::endl << v2 << std::endl << v3 << std::endl;
 	*/
-
-
+	
 	/*
 	// random
 	srand((unsigned int)time(0));

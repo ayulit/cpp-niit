@@ -214,6 +214,26 @@ std::istream& operator>>(std::istream& in, Vector& ref)
 	return in;
 }
 
+bool Vector::operator== (const Vector& right) const
+{
+	if (size == right.size)
+	{
+		for (size_t i = 0; i < size; i++)
+		{
+			if (data[i] != right[i]) {
+				return false;
+			}
+		}
+		return true;
+	}
+	return false;
+}
+
+bool Vector::operator != (const Vector& right) const
+{
+	return !(*this == right);
+}
+
 
 
 
