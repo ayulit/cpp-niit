@@ -7,12 +7,26 @@
 
 int main()
 {
-	Vector v1, v2(10), v3(10, 4);
-	v1.Print();
-	v2.Print();
-	v3.Print();
-	std::cout << std::endl;
+	Vector v1(4, 2), v2(6, 3), v3(10, 4);
+	//std::cin >> v1;	
+	std::cout << v1 << std::endl << v2 << std::endl << v3 << std::endl;
+	
+	std::cout << "v3 = v1 + v2" << std::endl;
+	v3 = v1 + v2;
+	std::cout << v3 << std::endl;
+	
+	// PushBack
+	std::cout << "v3 = v2 + 5" << std::endl;
+	v3 = v2 + 5;
+	std::cout << v3 << std::endl;
 
+	/*
+	std::cout << ++v1 << std::endl << v2++ << std::endl << ++v3 << std::endl;
+	std::cout << v1 << std::endl << v2 << std::endl << v3 << std::endl;
+	*/
+
+
+	/*
 	// random
 	srand((unsigned int)time(0));
 	
@@ -33,15 +47,12 @@ int main()
 	}
 
 	// check
-	v1.Print();
-	v2.Print();
-	v3.Print();
-	std::cout << std::endl;
+	std::cout << v1 << v2 << v3 << std::endl;
 
 	try
 	{
-		v1.At(10) = 100;
-		v1.Print();
+		v1[10] = 100;
+		std::cout << v1 << std::endl;
 	}
 	catch (std::out_of_range & out)
 	{
@@ -63,6 +74,6 @@ int main()
 	{
 		std::cerr << "vector is empty" << und.what() << std::endl;
 	}
-
+	*/
 	return 0;
 }

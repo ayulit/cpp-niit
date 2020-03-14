@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 
 // needed on Mac
 #include <cstddef>
@@ -18,8 +19,22 @@ public:
 	int& At(size_t index);
 	size_t Size() const { return size; }
 	size_t Capacity() const { return capacity; }
+
+	Vector& operator= (const Vector& right);
+	Vector operator+ (const Vector& right) const;
+	Vector& operator+ (int val);
+	int& operator[] (size_t index);
+	int operator[] (size_t index) const;
+	Vector& operator++();
+	Vector operator++(int);
 private:
 	int *data;
 	size_t size;
 	size_t capacity;
+
+	// helper
+	void AddTail(Vector& to, const Vector& from, int min, int max) const;
 };
+
+std::ostream& operator<<(std::ostream& out, const Vector& ref);
+std::istream& operator>>(std::istream& in, Vector& ref);

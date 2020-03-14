@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <stdexcept>
+#include <stdexcept>
 
 Vector::Vector(size_t s) : capacity(s), size(0)
 {
@@ -34,14 +35,14 @@ Vector::~Vector()
 void Vector::Print() const
 {
 	if (size == 0) {
-		std::cout << "Empty" << std::endl;
+		std::cout << "Empty ";
 	}
 	else {
 		for (size_t i = 0; i < size; ++i)
 		{
 			std::cout << data[i] << " ";
 		}
-		std::cout << std::endl;
+		std::cout;
 	}
 }
 
@@ -105,11 +106,113 @@ int& Vector::At(size_t index)
 	return data[index];
 }
 
+Vector& Vector::operator = (const Vector& right)
+{
+	if (this != &right) {
+		delete[] data;
 
+		data = new int[capacity = right.capacity];
+		size = right.size;
 
+		for (size_t i = 0; i < size; i++)
+		{
+			data[i] = right[i];
+		}
+	}
+	return *this;
+}
 
+// sum values of one vector with another
+Vector Vector::operator + (const Vector& right) const
+{
 
+	size_t min = size < right.size ? size : right.size;
+	size_t max = size > right.size ? size : right.size;
 
+	int j = size < right.size ? 1 : 2;
+
+	Vector res(max);
+	res.size = max;
+
+	for (size_t i = 0; i < min; i++)
+	{
+		res[i] = data[i] + right[i];
+	}
+
+	// for inside if better
+	if (1 == j)
+	{
+		AddTail(res, right, min, max);
+	}
+	else {
+		AddTail(res, *this, min, max);
+	}
+
+	return res;
+}
+
+// private helper
+void Vector::AddTail(Vector& to, const Vector& from, int min, int max) const 
+{
+	for (size_t i = min; i < max; i++)
+	{
+		to[i] = from[i];
+	}
+}
+
+Vector& Vector::operator + (int val)
+{
+	PushBack(val);
+	return *this;
+}
+
+int& Vector::operator[] (size_t index) 
+{
+	return At(index);
+}
+
+int Vector::operator[] (size_t index) const
+{
+	return At(index);
+}
+
+Vector& Vector::operator++()
+{
+	for (size_t i = 0; i < size; i++)
+	{
+		++data[i];
+	}
+	return *this;
+}
+
+Vector Vector::operator++(int)
+{
+	Vector temp(*this);
+	++*this;
+	return temp;
+}
+
+std::ostream& operator<<(std::ostream& out, const Vector& ref) 
+{
+	ref.Print();
+	return out;
+}
+
+std::istream& operator>>(std::istream& in, Vector& ref)
+{
+	int count = 0;
+	std::cout << "Enter amount of elements: " << std::endl;
+	in >> count;
+
+	for (size_t i = 0; i < count; i++)
+	{
+		int val;
+		std::cout << "Number " << i + 1 << ": ";
+		in >> val;
+		ref.PushBack(val);
+	}
+	return in;
+}
 
 
 
