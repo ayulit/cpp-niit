@@ -27,8 +27,8 @@ MyString::~MyString() {
     delete [] str;
 }
 
-char *const MyString::ToString() const {
-    return str;
+void MyString::Print() const {
+    std::cout << str;
 }
 
 size_t MyString::Size() const {
@@ -89,6 +89,94 @@ MyString MyString::Substr(size_t pos, size_t len) const {
 	return res;
 }
 
+MyString& MyString::operator=(const MyString &right) {
+    if (this != &right) {
+        delete[] str;
+        str = new char[right.Size() + 1];
+        strcpy(str, right.str);
+    }
+    return *this;
+}
+
+// strings concatenation
+MyString MyString::operator+(const MyString &right) const {
+    return operator+(right.str);
+}
+
+MyString MyString::operator+(const char *s) const {
+    size_t size = this->Size() + strlen(s);
+    char* newStr = new char[size + 1];
+
+    strcat(newStr, str);
+    strcat(newStr, s);
+
+    MyString res(newStr);
+    delete[] newStr;
+
+    return res;
+}
+
+MyString& MyString::operator+=(const MyString& right) {
+    return operator+=(right.str);
+}
+
+MyString& MyString::operator+=(const char *s) {
+    size_t size = this->Size() + strlen(s);
+    char* newStr = new char[size + 1];
+
+    strcat(newStr, str);
+    strcat(newStr, s);
+
+    delete[] str; // free memory from str
+    str = newStr;
+
+    return *this;
+}
+
+bool MyString::operator==(const MyString &right) const {
+    if (Size() != right.Size() || strcmp(str, right.str) != 0) {
+        return false;
+    }
+    return true;
+}
+
+bool MyString::operator!=(const MyString &right) const {
+    return !(*this == right);
+}
+
+bool MyString::operator>(const MyString &right) const {
+    return strcmp(str, right.str) > 0;
+}
+
+bool MyString::operator<(const MyString &right) const {
+    return strcmp(str, right.str) < 0;
+}
+
+MyString MyString::operator-(size_t pos) const {
+    size_t len = Size() - pos;
+    MyString res = this->Substr(pos, len);
+    return res;
+}
+
+
+std::ostream& operator<<(std::ostream& out, const MyString& ref)
+{
+    ref.Print();
+    return out;
+}
+
+std::istream& operator>>(std::istream& in, MyString& ref)
+{
+    size_t max = 80;
+    char* inStr = new char[max];
+
+    in.get(inStr, max);
+    ref = inStr;
+
+    delete[] inStr;
+
+    return in;
+}
 
 
 
