@@ -61,11 +61,5 @@ int main()
 	MyString str9 = "str";
 	cout << "str9 ->  " << str9.Insert(3, "9").ToString() << endl;
 
-
-	std::string sss;
-	cout << "sss ->  " << sss << endl;
-
-
-
     return 0;
 }

@@ -4,6 +4,11 @@
 #include <iostream>
 #include <stdexcept>
 
+MyString::MyString() {
+    str = new char[1];
+    str[0] = '\0';
+}
+
 MyString::MyString(const char* s) {
     size_t len = strlen(s);
 	    

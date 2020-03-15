@@ -7,7 +7,7 @@
 
 class MyString {
 public:
-    MyString() : str(nullptr) {}
+    MyString();
     MyString(const char* s);             // clion wants explicit
     MyString(const MyString& ref);       // copy constructor
     ~MyString();
