@@ -2,8 +2,12 @@
 #ifndef CPP_NIIT_MYDATE_H
 #define CPP_NIIT_MYDATE_H
 
+#define _CRT_SECURE_NO_WARNINGS
+
 #include <iostream>
 #include <ctime>
+
+#define timegm _mkgmtime
 
 class MyDate
 {

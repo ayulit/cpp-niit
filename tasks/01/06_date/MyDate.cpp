@@ -7,14 +7,14 @@ MyDate::MyDate() {
     timeinfo = new tm();
     time_t rawtime = 0;
     time(&rawtime); // now
-
-    // FIXME Am I right with struct copy?
+	    
     struct tm* ptr = gmtime(&rawtime);
     timeinfo->tm_year = ptr->tm_year;
     timeinfo->tm_mon = ptr->tm_mon;
     timeinfo->tm_mday = ptr->tm_mday;
 
-    // TODO: Perhaps we need to store time
+	
+	    
 }
 
 MyDate::MyDate(long sec) {
@@ -22,12 +22,12 @@ MyDate::MyDate(long sec) {
     time_t rawtime = sec;
 
     struct tm* ptr = gmtime(&rawtime);
-    // FIXME Am I right with struct copy?
+    
     timeinfo->tm_year = ptr->tm_year;
     timeinfo->tm_mon = ptr->tm_mon;
     timeinfo->tm_mday = ptr->tm_mday;
 
-//    delete ptr; // FIXME ???
+    
 }
 
 MyDate::MyDate(int year, int month, int day) {
@@ -95,12 +95,12 @@ MyDate& MyDate::operator-=(long sec) {
     time_t rawtime = timegm(timeinfo) - sec;
 
     struct tm* ptr = gmtime(&rawtime);
-    // FIXME Am I right with struct copy?
+    
     timeinfo->tm_year = ptr->tm_year;
     timeinfo->tm_mon = ptr->tm_mon;
     timeinfo->tm_mday = ptr->tm_mday;
 
-//    delete ptr; // FIXME: ?!
+
 
     return *this;
 }
@@ -109,12 +109,12 @@ MyDate& MyDate::operator+=(long sec) {
     time_t rawtime = timegm(timeinfo) + sec;
 
     struct tm* ptr = gmtime(&rawtime);
-    // FIXME Am I right with struct copy?
+    
     timeinfo->tm_year = ptr->tm_year;
     timeinfo->tm_mon = ptr->tm_mon;
     timeinfo->tm_mday = ptr->tm_mday;
 
-//    delete ptr; // FIXME: ?!
+
 
     return *this;
 }
