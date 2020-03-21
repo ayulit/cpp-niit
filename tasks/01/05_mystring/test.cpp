@@ -104,11 +104,12 @@ int main()
     aab += aaa;
     cout << aab << endl; // aabaaa
 
-    // FIXME: bug!
+
     aab += merry;
     cout << aab << endl; // aabaaaMerry
-//    aab += "1";
-//    cout << aab << endl;
+
+    aab += "1";
+    cout << aab << endl;
 
     MyString macbook = "MacBook";
     cout << macbook-3 << endl;

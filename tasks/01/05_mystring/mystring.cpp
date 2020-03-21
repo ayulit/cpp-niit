@@ -107,7 +107,7 @@ MyString MyString::operator+(const char *s) const {
     size_t size = this->Size() + strlen(s);
     char* newStr = new char[size + 1];
 
-    strcat(newStr, str);
+	strcpy(newStr, str); // before strcat!!!
     strcat(newStr, s);
 
     MyString res(newStr);
@@ -124,7 +124,7 @@ MyString& MyString::operator+=(const char *s) {
     size_t size = this->Size() + strlen(s);
     char* newStr = new char[size + 1];
 
-    strcat(newStr, str);
+	strcpy(newStr, str); // before strcat!!!    
     strcat(newStr, s);
 
     delete[] str; // free memory from str
