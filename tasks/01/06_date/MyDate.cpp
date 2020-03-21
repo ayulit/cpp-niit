@@ -13,6 +13,8 @@ MyDate::MyDate() {
     timeinfo->tm_year = ptr->tm_year;
     timeinfo->tm_mon = ptr->tm_mon;
     timeinfo->tm_mday = ptr->tm_mday;
+
+    // TODO: Perhaps we need to store time
 }
 
 MyDate::MyDate(long sec) {
@@ -24,6 +26,8 @@ MyDate::MyDate(long sec) {
     timeinfo->tm_year = ptr->tm_year;
     timeinfo->tm_mon = ptr->tm_mon;
     timeinfo->tm_mday = ptr->tm_mday;
+
+//    delete ptr; // FIXME ???
 }
 
 MyDate::MyDate(int year, int month, int day) {
@@ -40,6 +44,10 @@ MyDate::MyDate(const MyDate &ref) {
     timeinfo->tm_year = ref.timeinfo->tm_year;
     timeinfo->tm_mon = ref.timeinfo->tm_mon;
     timeinfo->tm_mday = ref.timeinfo->tm_mday;
+}
+
+MyDate::~MyDate() {
+    delete timeinfo;
 }
 
 char* MyDate::getDate() const {
@@ -63,10 +71,92 @@ void MyDate::setDate(int year, int month, int day) {
 }
 
 double MyDate::diff(const MyDate &ref) const {
-    time_t thisRawtime = mktime(timeinfo);
-    time_t refRawtime = mktime(ref.timeinfo);
+    time_t thisRawtime = timegm(timeinfo);
+    time_t refRawtime = timegm(ref.timeinfo);
 
     return difftime(thisRawtime, refRawtime);
 }
 
+double MyDate::operator-(const MyDate &right) const {
+    return this->diff(right);
+}
+
+MyDate MyDate::operator-(long sec) const {
+    time_t rawtime = timegm(timeinfo) - sec;
+    return MyDate(rawtime);
+}
+
+MyDate MyDate::operator+(long sec) const {
+    time_t rawtime = timegm(timeinfo) + sec;
+    return MyDate(rawtime);
+}
+
+MyDate& MyDate::operator-=(long sec) {
+    time_t rawtime = timegm(timeinfo) - sec;
+
+    struct tm* ptr = gmtime(&rawtime);
+    // FIXME Am I right with struct copy?
+    timeinfo->tm_year = ptr->tm_year;
+    timeinfo->tm_mon = ptr->tm_mon;
+    timeinfo->tm_mday = ptr->tm_mday;
+
+//    delete ptr; // FIXME: ?!
+
+    return *this;
+}
+
+MyDate& MyDate::operator+=(long sec) {
+    time_t rawtime = timegm(timeinfo) + sec;
+
+    struct tm* ptr = gmtime(&rawtime);
+    // FIXME Am I right with struct copy?
+    timeinfo->tm_year = ptr->tm_year;
+    timeinfo->tm_mon = ptr->tm_mon;
+    timeinfo->tm_mday = ptr->tm_mday;
+
+//    delete ptr; // FIXME: ?!
+
+    return *this;
+}
+
+bool MyDate::operator==(const MyDate &right) const {
+    return timegm(timeinfo) == timegm(right.timeinfo);
+}
+
+bool MyDate::operator!=(const MyDate &right) const {
+    return !(*this == right);;
+}
+
+bool MyDate::operator>(const MyDate &right) const {
+    return timegm(timeinfo) > timegm(right.timeinfo);
+}
+
+bool MyDate::operator<(const MyDate &right) const {
+    return timegm(timeinfo) < timegm(right.timeinfo);
+}
+
+std::ostream& operator<<(std::ostream& out, const MyDate& ref)
+{
+    std::cout << ref.getDate();
+    return out;
+}
+
+std::istream& operator>>(std::istream& in, MyDate& ref)
+{
+    int year;
+    int month;
+    int day;
+    std::cout << "Enter date..." << std::endl;
+
+    std::cout << "Year: ";
+    in >> year;
+    std::cout << "Month: ";
+    in >> month;
+    std::cout << "Day: ";
+    in >> day;
+
+    ref.setDate(year, month, day);
+
+    return in;
+}
 

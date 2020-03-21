@@ -2,12 +2,13 @@
 
 #include <iostream>
 using std::cout;
+using std::cin;
 using std::endl;
 
 int main() {
     MyDate date1;
     cout << "Test #1   Today: " << date1.getDate() << endl;
-    date1.setDate(1961, 04, 12);
+    date1.setDate(1961, 4, 12);
     cout << "Test #1   date1= " << date1.getDate() << endl << endl;
 
     MyDate date2(1);
@@ -26,6 +27,45 @@ int main() {
     // Copy constructor
     MyDate date5(date1);
     cout << "Test #6   Copy constructor: " << date5.getDate() << endl << endl;
+
+    cout << "Test #7   Diff Overloaded -: " << date4 - date3 << endl << endl;
+
+    cout << "Test #8   Minus sec: " << date1 - 1 << endl << endl;
+
+    cout << "Test #9   Plus sec: " << date1 + 1 << endl << endl;
+
+//    MyDate date6;
+//    cin >> date6;
+//    cout << "Test #10   date6: " << date6 << endl << endl;
+
+    MyDate y2k(2000, 1, 1);
+    cout << "Test #11   y2k: " << y2k << endl;
+    y2k -= 86400;
+    cout << "Test #11   y2k-=86400: " << y2k << endl;
+    y2k += 86400;
+    cout << "Test #11   y2k+=86400: " << y2k << endl;
+    y2k += 86400;
+    cout << "Test #11   y2k+=86400: " << y2k << endl;
+
+    MyDate one(2001, 05, 10);
+    MyDate two(2001, 05, 10);
+
+    if (one == two) {
+        cout << "Equal!" << endl;
+    }
+
+    if (one != y2k) {
+        cout << "NOT Equal!" << endl;
+    }
+
+    if (y2k < one) {
+        cout << y2k << " < " << one <<  endl;
+    }
+
+    if (one > date1) {
+        cout << one << " > " << date1 <<  endl;
+    }
+
 
     return 0;
 }
