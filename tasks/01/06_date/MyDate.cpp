@@ -12,9 +12,6 @@ MyDate::MyDate() {
     timeinfo->tm_year = ptr->tm_year;
     timeinfo->tm_mon = ptr->tm_mon;
     timeinfo->tm_mday = ptr->tm_mday;
-
-	
-	    
 }
 
 MyDate::MyDate(long sec) {
@@ -26,8 +23,6 @@ MyDate::MyDate(long sec) {
     timeinfo->tm_year = ptr->tm_year;
     timeinfo->tm_mon = ptr->tm_mon;
     timeinfo->tm_mday = ptr->tm_mday;
-
-    
 }
 
 MyDate::MyDate(int year, int month, int day) {
@@ -77,6 +72,15 @@ double MyDate::diff(const MyDate &ref) const {
     return difftime(thisRawtime, refRawtime);
 }
 
+MyDate& MyDate::operator=(const MyDate &right) {
+    if (this != &right) {
+        timeinfo->tm_year = right.timeinfo->tm_year;
+        timeinfo->tm_mon = right.timeinfo->tm_mon;
+        timeinfo->tm_mday = right.timeinfo->tm_mday;
+    }
+    return *this;
+}
+
 double MyDate::operator-(const MyDate &right) const {
     return this->diff(right);
 }
@@ -100,8 +104,6 @@ MyDate& MyDate::operator-=(long sec) {
     timeinfo->tm_mon = ptr->tm_mon;
     timeinfo->tm_mday = ptr->tm_mday;
 
-
-
     return *this;
 }
 
@@ -113,8 +115,6 @@ MyDate& MyDate::operator+=(long sec) {
     timeinfo->tm_year = ptr->tm_year;
     timeinfo->tm_mon = ptr->tm_mon;
     timeinfo->tm_mday = ptr->tm_mday;
-
-
 
     return *this;
 }

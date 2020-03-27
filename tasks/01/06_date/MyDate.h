@@ -7,7 +7,7 @@
 #include <iostream>
 #include <ctime>
 
-#define timegm _mkgmtime
+// #define timegm _mkgmtime // windows
 
 class MyDate
 {
@@ -24,6 +24,7 @@ public:
     double diff(const MyDate& ref) const;
 
     // OVERLOADING
+    MyDate& operator= (const MyDate& right);
     double operator- (const MyDate& right) const;
     MyDate operator- (long sec) const;
     MyDate operator+ (long sec) const;

@@ -66,6 +66,16 @@ int main() {
         cout << one << " > " << date1 <<  endl;
     }
 
+    MyDate date7(2014, 06, 01);
+    MyDate date8 = date7; // Implicit copy constructor in action.
+    cout << "\nTest #12  date7: " << date7 << endl;
+    cout << "Test #12  date8: " << date8 << endl;
+
+    date8 = y2k; // will be just second ref if assignment operator isn't overloaded!
+    cout << "\nTest #13  date8: " << date8 << endl;
+    y2k.setDate(1980,1,1);
+    cout << "Test #13  y2k: " << y2k << endl;
+    cout << "Test #13  date8: " << date8 << endl;
 
     return 0;
 }
