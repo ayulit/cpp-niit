@@ -7,7 +7,8 @@
 #include <iostream>
 #include <ctime>
 
-// #define timegm _mkgmtime // windows
+// FIXME: Q: ifndef?
+#define timegm _mkgmtime // windows
 
 class MyDate
 {
@@ -16,7 +17,7 @@ public:
     explicit MyDate(long sec);
     MyDate(int year, int month, int day);
     MyDate(const MyDate& ref);       // copy constructor
-    ~MyDate(); // FIXME Is it needed?
+    ~MyDate();
 
     char* getDate() const;
     void setDate(int year, int month, int day);

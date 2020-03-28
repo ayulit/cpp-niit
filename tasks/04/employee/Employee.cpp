@@ -10,12 +10,12 @@ Employee::Employee(string name,
                    string surname,
                    string position,
                    int salary,
-                   MyDate* hireDate) : ID(++count),
+                   MyDate hireDate) : ID(++count),
                                       name(name),
                                       surname(surname),
                                       position(position),
                                       salary(salary),
-                                      hireDate(hireDate),
+                                      hireDate(new MyDate(hireDate)),
                                       fireDate(nullptr),
                                       bonus(false) {
 }
@@ -23,6 +23,22 @@ Employee::Employee(string name,
 Employee::~Employee() {
     delete fireDate;
     delete hireDate;
+}
+
+void Employee::Print() const
+{
+	cout << "id: " << ID
+		 << " name: " << name
+		 << " surname: " << surname
+		 << " position: " << position
+		 << " salary: " << salary
+		 << " hireDate: " << *hireDate; // dereferencing!
+
+	if (fireDate != nullptr) {
+		cout << " fireDate: " << *fireDate; // dereferencing!
+	}
+
+	cout << " bonus: " << bonus;	
 }
 
 /** getters */
@@ -41,14 +57,19 @@ const string& Employee::getPosition() const {
 int Employee::getSalary() const {
     return salary;
 }
-MyDate* Employee::getHireDate() const {
+const MyDate* Employee::getHireDate() const {
     return hireDate;
 }
-MyDate* Employee::getFireDate() const {
+const MyDate* Employee::getFireDate() const {
     return fireDate;
 }
 bool Employee::hasBonus() const {
     return bonus;
+}
+
+/** setters */
+void Employee::setBonus(bool bonus) {
+	this->bonus = bonus;
 }
 
 /** overloading */
@@ -59,19 +80,8 @@ bool Employee::operator!=(const Employee &rhs) const {
     return !(rhs == *this);
 }
 
-// FIXME: Q: using friend for direct field access
 ostream& operator<<(ostream& os, const Employee& employee) {
-    os << "ID: " << employee.getId()
-       << " name: " << employee.getName()
-       << " surname: " << employee.getSurname()
-       << " position: " << employee.getPosition()
-       << " salary: " << employee.getSalary()
-       << " hireDate: " << *(employee.getHireDate()); // dereferencing!
-
-    if (employee.getFireDate() != nullptr) {
-        os << " fireDate: " << *(employee.getFireDate()); // dereferencing!
-    }
-
-    os << " bonus: " << employee.hasBonus();
+	cout << "EMPLOYEE: ";
+	employee.Print();
     return os;
 }
