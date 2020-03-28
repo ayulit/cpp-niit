@@ -1,4 +1,4 @@
-#pragma once
+#pragma once // FIXME: Q: Use in all header in hierarchy?
 
 #include <string>
 
@@ -9,27 +9,26 @@ using namespace std;
 class Employee
 {
 public:
+    // TODO: default
 	Employee(string name, string surname, string position, int salary, MyDate hireDate);
-	    
+    Employee(const Employee& employee); // copy constructor
+
     virtual ~Employee();
 
-	void Print() const;
+	void print() const;
 
-    /** getters */
+	/* setters */
+    void setBonus(bool bonus);
+
+    /* getters */
     int getId() const;
-    const string& getName() const;
-    const string& getSurname() const;
-    const string& getPosition() const;
-    int getSalary() const;
-    const MyDate *getHireDate() const;
-    const MyDate *getFireDate() const;
-    bool hasBonus() const;
 
     /** overloading */
+    // TODO overload = ???
+    // FIXME virtual overloading???
     bool operator==(const Employee& rhs) const;
     bool operator!=(const Employee& rhs) const;
-protected:
-	void setBonus(bool bonus);
+
 private:
 	const int ID;
 	static int count;

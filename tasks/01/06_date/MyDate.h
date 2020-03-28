@@ -8,7 +8,7 @@
 #include <ctime>
 
 // FIXME: Q: ifndef?
-#define timegm _mkgmtime // windows
+//#define timegm _mkgmtime // windows
 
 class MyDate
 {

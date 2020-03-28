@@ -20,12 +20,25 @@ Employee::Employee(string name,
                                       bonus(false) {
 }
 
+/** copy constructor */
+Employee::Employee(const Employee& employee) : ID(employee.ID) {
+    name = employee.name;
+    surname = employee.surname;
+    position = employee.position;
+    salary = employee.salary;
+
+    hireDate = new MyDate(*hireDate); 
+    fireDate = new MyDate(*fireDate); 
+
+    bonus = employee.bonus;
+}
+
 Employee::~Employee() {
     delete fireDate;
     delete hireDate;
 }
 
-void Employee::Print() const
+void Employee::print() const
 {
 	cout << "id: " << ID
 		 << " name: " << name
@@ -41,32 +54,6 @@ void Employee::Print() const
 	cout << " bonus: " << bonus;	
 }
 
-/** getters */
-int Employee::getId() const {
-    return ID;
-}
-const string& Employee::getName() const {
-    return name;
-}
-const string& Employee::getSurname() const {
-    return surname;
-}
-const string& Employee::getPosition() const {
-    return position;
-}
-int Employee::getSalary() const {
-    return salary;
-}
-const MyDate* Employee::getHireDate() const {
-    return hireDate;
-}
-const MyDate* Employee::getFireDate() const {
-    return fireDate;
-}
-bool Employee::hasBonus() const {
-    return bonus;
-}
-
 /** setters */
 void Employee::setBonus(bool bonus) {
 	this->bonus = bonus;
@@ -80,8 +67,13 @@ bool Employee::operator!=(const Employee &rhs) const {
     return !(rhs == *this);
 }
 
+/** getters */
+int Employee::getId() const {
+    return ID;
+}
+
 ostream& operator<<(ostream& os, const Employee& employee) {
 	cout << "EMPLOYEE: ";
-	employee.Print();
+    employee.print();
     return os;
 }

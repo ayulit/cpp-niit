@@ -1,35 +1,40 @@
+#pragma once
 #include "Employee.h"
 #include <vector>
 
-struct Task
+struct Subordinate
 {
 	string taskName;
 	Employee* resource; // do not delete, i.e. memory allocated not here!
 	MyDate* deadline;
 	MyDate* finish;
-	bool bonus;
-	
-	Task(string taskName, Employee* resource, MyDate deadline);
-	// TODO: copy constructor
-	~Task();
-};
 
-struct Project 
-{	
-	string projectName;
-	vector<Task> tasks;
-	bool bonus = false;
+	Subordinate(string taskName, Employee* resource, MyDate deadline);
+    Subordinate(const Subordinate& subordinate); // copy constructor
+	~Subordinate();
+
+    void setFinish(const MyDate& finish);
+
+    bool isDeadlineExpired();
 };
 
 class Manager : public Employee
 {
 public:
-	Manager(string name, string surname, string position, int salary, MyDate hireDate);	
-		
-	void addProject(Project project);
+	Manager(string name, string surname, string position, int salary, MyDate hireDate);
+    // FIXME copy constructor ???
 
+	void addSubordinate(Subordinate* subordinate);
+
+	// FIXME maybe by ref?
+	Subordinate* getSubordinateById(int id);
+
+    void checkSubordinates();
+
+    /** overloading */
+    // TODO: overload =, etc.?
 private:	
-	vector<Project> projects;
+	vector<Subordinate*> subordinates;
 };
 
 ostream& operator<<(ostream& os, const Manager& manager);
